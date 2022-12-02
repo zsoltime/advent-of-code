@@ -1,0 +1,27 @@
+{
+  "name": "advent-of-code-2022",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "func() { node ./day-${1:-01}/index.js; }; func",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --verbose",
+    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zsoltime/advent-of-code-2022.git"
+  },
+  "keywords": [],
+  "author": "Zsolt Meszaros",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zsoltime/advent-of-code-2022/issues"
+  },
+  "homepage": "https://github.com/zsoltime/advent-of-code-2022#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.3.1"
+  }
+}
