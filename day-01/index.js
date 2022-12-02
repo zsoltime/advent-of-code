@@ -1,0 +1,49 @@
+import { readFileSync } from 'fs';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+
+export function readFile(filePath) {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
+
+  return readFileSync(resolve(__dirname, filePath), {
+    encoding: 'utf-8',
+  });
+}
+
+const sum = (nums) => nums.reduce((a, b) => a + b, 0);
+
+function getCaloriesByElves(input) {
+  return input
+    .split('\n\n')
+    .map((line) => line.split('\n').map(Number))
+    .map(sum);
+}
+
+export function getMaxCalories(input) {
+  return Math.max(...getCaloriesByElves(input));
+}
+
+export function getTopThreeCalories(input) {
+  const top3 = getCaloriesByElves(input)
+    .sort((a, b) => b - a)
+    .slice(0, 3);
+
+  return sum(top3);
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  const input = readFile('./input.txt');
+  const answer1 = getMaxCalories(input);
+  const answer2 = getTopThreeCalories(input);
+
+  console.log(`
+#1 Find the Elf carrying the most Calories.
+   How many total Calories is that Elf carrying?
+   ${answer1}
+
+#2 Find the top three Elves carrying the most Calories.
+   How many Calories are those Elves carrying in total?
+   ${answer2}
+`);
+}
