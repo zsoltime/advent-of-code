@@ -1,15 +1,4 @@
-import { readFileSync } from 'fs';
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
-
-export function readFile(filePath) {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-
-  return readFileSync(resolve(__dirname, filePath), {
-    encoding: 'utf-8',
-  });
-}
+import { getInput } from '../utils/index.js';
 
 function getContent(input) {
   return input.trim().split('\n');
@@ -18,17 +7,6 @@ function getContent(input) {
 function splitItems(input) {
   return [input.slice(0, input.length / 2), input.slice(input.length / 2)];
 }
-
-// function findFirstCommonItem([first, second]) {
-//   const chars = new Set(first);
-
-//   for (let i = 0; i < second.length; i++) {
-//     const ch = second.charAt(i);
-//     if (chars.has(ch)) {
-//       return ch;
-//     }
-//   }
-// }
 
 function findFirstCommonItem(strings) {
   const sets = strings.map((str) => new Set(str.split('')));
@@ -71,7 +49,7 @@ export function getSumOfGroupedPriorities(input) {
 }
 
 if (process.env.NODE_ENV !== 'test') {
-  const input = readFile('./input.txt');
+  const input = getInput(import.meta.url);
   const answer1 = getSumOfPriorities(input);
   const answer2 = getSumOfGroupedPriorities(input);
 

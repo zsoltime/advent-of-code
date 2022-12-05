@@ -1,17 +1,4 @@
-import { readFileSync } from 'fs';
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
-
-import { Stack } from '../utils/index.js';
-
-export function readFile(filePath) {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-
-  return readFileSync(resolve(__dirname, filePath), {
-    encoding: 'utf-8',
-  });
-}
+import { getInput, Stack } from '../utils/index.js';
 
 function groupItems(str) {
   const groups = [];
@@ -100,7 +87,7 @@ export function getTopCrates9001(input) {
 }
 
 if (process.env.NODE_ENV !== 'test') {
-  const input = readFile('./input.txt');
+  const input = getInput(import.meta.url);
   const answer1 = getTopCrates(input);
   const answer2 = getTopCrates9001(input);
 
@@ -109,7 +96,7 @@ if (process.env.NODE_ENV !== 'test') {
    on top of each stack? (CrateMover 9000)
    ${answer1}
 
-#2 After the rearrangement procedure completes, what crate ends up 
+#2 After the rearrangement procedure completes, what crate ends up
    on top of each stack? (CrateMover 9001)
    ${answer2}
 `);

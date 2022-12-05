@@ -1,15 +1,4 @@
-import { readFileSync } from 'fs';
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
-
-export function readFile(filePath) {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
-
-  return readFileSync(resolve(__dirname, filePath), {
-    encoding: 'utf-8',
-  });
-}
+import { getInput } from '../utils/index.js';
 
 function getContent(input) {
   return input.trim().split('\n');
@@ -66,7 +55,7 @@ export function getCorrectTotalScore(input) {
 }
 
 if (process.env.NODE_ENV !== 'test') {
-  const input = readFile('./input.txt');
+  const input = getInput(import.meta.url);
   const answer1 = getTotalScore(input);
   const answer2 = getCorrectTotalScore(input);
 
