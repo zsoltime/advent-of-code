@@ -1,8 +1,4 @@
-import { getInput } from '../utils/index.js';
-
-function getContent(input) {
-  return input.trim().split('\n');
-}
+import { getInput, splitLines } from '../utils/index.js';
 
 // A: Rock
 // B: Paper
@@ -26,7 +22,7 @@ function getScore([opponent, player]) {
 }
 
 function getPairs(input) {
-  return getContent(input).map((line) => line.split(' '));
+  return splitLines(input).map((line) => line.split(' '));
 }
 
 export function getTotalScore(input) {

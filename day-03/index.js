@@ -1,8 +1,4 @@
-import { getInput } from '../utils/index.js';
-
-function getContent(input) {
-  return input.trim().split('\n');
-}
+import { getInput, splitLines } from '../utils/index.js';
 
 function splitItems(input) {
   return [input.slice(0, input.length / 2), input.slice(input.length / 2)];
@@ -24,7 +20,7 @@ function letterToPriority(ch) {
 }
 
 export function getSumOfPriorities(input) {
-  return getContent(input)
+  return splitLines(input)
     .map(splitItems)
     .map(findFirstCommonItem)
     .map(letterToPriority)
@@ -42,7 +38,7 @@ function groupItems(arr) {
 }
 
 export function getSumOfGroupedPriorities(input) {
-  return groupItems(getContent(input))
+  return groupItems(splitLines(input))
     .map(findFirstCommonItem)
     .map(letterToPriority)
     .reduce((a, b) => a + b, 0);

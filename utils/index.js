@@ -11,6 +11,10 @@ export function getInput(moduleUrl) {
   });
 }
 
+export function splitLines(input) {
+  return input.trim().split('\n');
+}
+
 export class Stack {
   constructor() {
     this.items = [];

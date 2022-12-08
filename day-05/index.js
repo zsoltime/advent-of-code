@@ -1,4 +1,4 @@
-import { getInput, Stack } from '../utils/index.js';
+import { getInput, splitLines, Stack } from '../utils/index.js';
 
 function groupItems(str) {
   const groups = [];
@@ -44,7 +44,7 @@ function parseMoves(rawMoves) {
     return { from: from - 1, qty: qty - 0, to: to - 1 };
   }
 
-  return rawMoves.trim().split('\n').map(getMove);
+  return splitLines(rawMoves).map(getMove);
 }
 
 function parseInput(input) {

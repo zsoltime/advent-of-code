@@ -1,4 +1,4 @@
-import { getInput } from '../utils/index.js';
+import { getInput, splitLines } from '../utils/index.js';
 
 const ROOT = '.';
 
@@ -9,7 +9,7 @@ function getType(line) {
 }
 
 export function getDirectorySizes(input) {
-  const lines = input.split('\n');
+  const lines = splitLines(input);
   const dirs = new Map();
   let currentDirectory = [ROOT];
 

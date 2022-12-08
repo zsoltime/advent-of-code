@@ -1,8 +1,4 @@
-import { getInput } from '../utils/index.js';
-
-function getContent(input) {
-  return input.trim().split('\n');
-}
+import { getInput, splitLines } from '../utils/index.js';
 
 function getRanges(line) {
   return line.split(',').map((line) => line.split('-').map(Number));
@@ -17,14 +13,14 @@ function isPartiallyContained([a, b]) {
 }
 
 export function getFullyContained(input) {
-  return getContent(input)
+  return splitLines(input)
     .map(getRanges)
     .map(isFullyContained)
     .filter(Boolean).length;
 }
 
 export function getPartiallyContained(input) {
-  return getContent(input)
+  return splitLines(input)
     .map(getRanges)
     .map(isPartiallyContained)
     .filter(Boolean).length;

@@ -1,4 +1,24 @@
-import { Stack } from './index.js';
+import { splitLines, Stack } from './index.js';
+
+describe('splitLines', () => {
+  it('should return an array of lines from the input', () => {
+    const input = `line 1
+line 2
+line 3`;
+    expect(splitLines(input)).toEqual(['line 1', 'line 2', 'line 3']);
+  });
+
+  it('should remove leading and trailing empty lines', () => {
+    const input = `
+
+line 1
+
+line 3
+
+`;
+    expect(splitLines(input)).toEqual(['line 1', '', 'line 3']);
+  });
+});
 
 describe('Stack', () => {
   let stack;
