@@ -11,6 +11,17 @@ export function getInput(moduleUrl) {
   });
 }
 
+export function getLCM(divisors) {
+  const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+  let lcm = 1;
+
+  for (const divisor of divisors) {
+    lcm = (lcm * divisor) / gcd(lcm, divisor);
+  }
+
+  return lcm;
+}
+
 export function splitLines(input) {
   return input.trim().split('\n');
 }
