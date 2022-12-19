@@ -1,6 +1,6 @@
 import { getInput, getLCM, splitLines } from '../utils/index.js';
 
-function parseMonkeys(input) {
+function parseInput(input) {
   const monkeys = input
     .trim()
     .split('\n\n')
@@ -10,12 +10,12 @@ function parseMonkeys(input) {
       const regexOperation =
         /new = old (?<operator>[\*\+]) (?<operand>\d+|old)/;
 
-      let { operator, operand } = lines[2].match(regexOperation).groups;
-      operand = operand === 'old' ? prev : parseInt(operand);
-
       return {
         items: lines[1].match(regexNumber).map((n) => parseInt(n)),
         getWorryLevel(prev) {
+          let { operator, operand } = lines[2].match(regexOperation).groups;
+          operand = operand === 'old' ? prev : parseInt(operand);
+
           return operator === '*' ? prev * operand : prev + operand;
         },
         divisibleBy: parseInt(lines[3].match(regexNumber)[0]),
@@ -32,7 +32,7 @@ function parseMonkeys(input) {
 }
 
 export function getMonkeyBusiness(input, rounds) {
-  const monkeys = parseMonkeys(input);
+  const monkeys = parseInput(input);
   const lcm = getLCM(monkeys.map((x) => x.divisibleBy));
 
   for (let i = 0; i < rounds; i++) {
